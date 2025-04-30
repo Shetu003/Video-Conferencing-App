@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "target/*.jar",
+      "use": "@vercel/java"
+    },
+    {
+      "src": "src/main/resources/static/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "target/*.jar"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/main/resources/static/$1"
+    }
+  ],
+  "env": {
+    "PORT": "8080",
+    "SPRING_PROFILES_ACTIVE": "production"
+  }
+}
